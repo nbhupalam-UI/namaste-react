@@ -1,0 +1,131 @@
+body {
+  background-color: white;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+.app * {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 11%;
+  margin: 0 auto;
+  box-shadow: 0 20px 45px -15px rgba(40,44,63,.15);
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+  background-color: white;
+}
+
+.logo-container {
+  display: flex;
+}
+
+.logo {
+  width: 100px;
+}
+
+.nav-items > ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.nav-items > ul > li {
+  padding: 10px;
+  margin: 10px;
+}
+
+.main-section {
+  margin: 0 auto;
+  padding: 140px 20px 20px;
+  max-width: 80%;
+}
+
+.restaurant-container,
+.shimmer-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.restaurant-card,
+.shimmer-card {
+  border: 1px solid #d3d5df;
+  border-radius: 6px;
+  width: calc(25% - 20px);
+  min-height: 300px;
+  margin: 15px 0;
+  padding: 20px 20px 0;
+  background-color: #0000 !important;
+  box-sizing: border-box;
+}
+
+.restaurant-card:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 7px 0 rgba(218, 220, 230, 0.6);
+}
+
+.restaurant-card .restaurant-logo {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.restaurant-card h3 {
+  margin-top: 6px;
+}
+
+.shimmer-card-image {
+  width: 240px;
+  height: 151px;
+  background-color: #eef0f5;
+}
+
+.shimmer-title {
+  background-color: #eef0f5;
+  margin-top: 15px;
+  width: 90%;
+  height: 22px;
+}
+
+.shimmer-info {
+  background-color: #eef0f5;
+  margin-top: 15px;
+  width: 60%;
+  height: 22px;
+}
+
+.filter {
+  display: flex;
+  column-gap: 20px;
+  justify-content: space-between;
+}
+
+.search-container .search-input {
+  margin-right: 10px;
+  width: 300px;
+  height: 30px;
+}
+
+.search-container button {
+  width: 100px;
+  height: 30px;
+}
+
+.top-rated-btn {
+  height: 30px;
+  width: 250px;
+}
