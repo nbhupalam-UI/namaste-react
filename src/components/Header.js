@@ -1,19 +1,18 @@
+import { Link } from 'react-router-dom'
 import { LOGO_URL } from "../utils/constants";
 
 const Header = () => {
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
+    <div className="flex justify-between items-center fixed w-full z-[999] shadow-lg bg-white top-0 my-0 mx-auto py-[10px] px-[5%]">
+      <div className="flex">
+        <Link to="/"><img className="w-[100px]" src={LOGO_URL} /></Link>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
+      <ul className="flex list-none m-0 p-0 text-[20px]">
+        <li className='pr-3'><Link to="/" className="hover:underline">Home</Link></li>
+        <li className='px-3'><Link to="/about" className="hover:underline">About Us</Link></li>
+        <li className='px-3'><Link to="/contact" className="hover:underline">Contact Us</Link></li>
+        <li className='pl-3 hover:underline'>Cart</li>
+      </ul>
     </div>
   );
 };

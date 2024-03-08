@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from '../utils/useOnlineStatus';
 
 const Main = () => {
   const [resList, setResList] = useState([]);
   const [resListInitial, setResListInitial] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const onlineStatus = useOnlineStatus();
+
   const renderTopRated = () => {
     const res = [...resList];
     setResList(res.filter((f) => f.info.avgRatingString > 4));
@@ -35,13 +38,15 @@ const Main = () => {
     fetchRes();
   }, []);
 
+  if(onlineStatus === false) return <h1>Oops!!! Looks like you are offline, Please check your connection!!!</h1>;
+
   return (
     <div className="main">
-      <div className="filter">
-        <div className="search-container">
+      <div className="flex gap-5 justify-between mb-10">
+        <div>
           <input
             type="text"
-            className="search-input"
+            className="h-8 w-80 border-gray-500 border rounded mr-[10px]"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -50,9 +55,9 @@ const Main = () => {
               }
             }}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button className="h-8 w-24 bg-blue-600 text-white rounded-[4px]" onClick={handleSearch}>Search</button>
         </div>
-        <button className="top-rated-btn" onClick={renderTopRated}>
+        <button className="h-8 w-64 bg-blue-600 text-white rounded-[4px]" onClick={renderTopRated}>
           Top Rated Restaurants
         </button>
       </div>
@@ -63,7 +68,7 @@ const Main = () => {
           <p>No results found. Please refrain your search!!!</p>
         )
       ) : (
-        <div className="restaurant-container">
+        <div className="flex mt-5 flex-wrap gap-x-4">
           {resList.map((res) => {
             return <RestaurantCard {...res.info} key={res.info.id} />;
           })}

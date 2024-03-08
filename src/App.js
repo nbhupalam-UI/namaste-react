@@ -1,18 +1,55 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
-import Header from './components/Header';
-import Main from './components/Main';
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Error from "./components/Error";
 import "../index.css";
+
+const About = lazy(() => import("./components/About"));
+const ContactUs = lazy(() => import("./components/ContactUs"));
 
 const AppLayout = () => {
   return (
-    <div className="app">
+    <div className="text-[16px]">
       <Header />
-      <Main />
+      <section className="my-0 mx-auto max-w-[90%] pt-[140px]">
+        <Outlet />
+      </section>
     </div>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Main />,
+      },
+      {
+        path: "/about",
+        element: (
+          <Suspense fallback={<h1>About loading....</h1>}>
+            <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <Suspense fallback={<h1>Contact us loading....</h1>}>
+            <ContactUs />
+          </Suspense>
+        ),
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
