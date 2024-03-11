@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from '../utils/useOnlineStatus';
+import { Link } from "react-router-dom";
 
 const Main = () => {
   const [resList, setResList] = useState([]);
@@ -70,7 +71,11 @@ const Main = () => {
       ) : (
         <div className="flex mt-5 flex-wrap gap-x-4">
           {resList.map((res) => {
-            return <RestaurantCard {...res.info} key={res.info.id} />;
+            return (
+              <Link className="w-[24%]" to={`/restaurants/${res.info.id}`}>
+                <RestaurantCard {...res.info} key={res.info.id} />
+              </Link>
+            );
           })}
         </div>
       )}

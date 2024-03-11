@@ -2,7 +2,7 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = ({ name, cuisines, cloudinaryImageId, costForTwo, avgRatingString, sla }) => {
   return (
-    <div className="border border-[#d3d5df] rounded-[6px] w-[24%] min-h-[300px] mx-0 mb-8 py-5 px-5 box-border hover:cursor-pointer hover:shadow-2xl">
+    <div className="border border-[#d3d5df] rounded-[6px] min-h-[300px] mx-0 mb-8 py-5 px-5 box-border hover:cursor-pointer hover:shadow-2xl">
       <img
         className="w-full rounded-[6px]"
         src={`${CDN_URL}/${cloudinaryImageId}`}
