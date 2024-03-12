@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from '../utils/useOnlineStatus';
+import { Link } from "react-router-dom";
+import {UserDataContext} from "../utils/UserDataContext";
 
 const Main = () => {
   const [resList, setResList] = useState([]);
   const [resListInitial, setResListInitial] = useState([]);
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser, setUserName} = useContext(UserDataContext);
 
   const renderTopRated = () => {
     const res = [...resList];
@@ -56,6 +59,7 @@ const Main = () => {
             }}
           />
           <button className="h-8 w-24 bg-blue-600 text-white rounded-[4px]" onClick={handleSearch}>Search</button>
+          <label className="ml-4 inline-block mr-2">UserName: </label><input type="text" value={loggedInUser} onChange={(e) => setUserName(e.target.value)} className="pl-2 h-8 w-80 border-gray-500 border rounded mr-[10px]"/>
         </div>
         <button className="h-8 w-64 bg-blue-600 text-white rounded-[4px]" onClick={renderTopRated}>
           Top Rated Restaurants
@@ -70,7 +74,11 @@ const Main = () => {
       ) : (
         <div className="flex mt-5 flex-wrap gap-x-4">
           {resList.map((res) => {
-            return <RestaurantCard {...res.info} key={res.info.id} />;
+            return (
+              <Link className="w-[24%]" to={`/restaurants/${res.info.id}`} key={res.info.id}>
+                <RestaurantCard {...res.info} key={res.info.id} />
+              </Link>
+            );
           })}
         </div>
       )}
