@@ -7,7 +7,10 @@ import Main from "./components/Main";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 
-import {UserDataContextProvider} from "./utils/UserDataContext";
+import { UserDataContextProvider } from "./utils/UserDataContext";
+
+import appStore from "./utils/appStore";
+import { Provider } from "react-redux";
 
 import "../index.css";
 
@@ -15,24 +18,26 @@ const About = lazy(() => import("./components/About"));
 const ContactUs = lazy(() => import("./components/ContactUs"));
 
 const AppLayout = () => {
-  const [userName, setUserName ] = useState();
+  const [userName, setUserName] = useState();
 
   useEffect(() => {
     const data = {
-      name: 'Naga Pradeep Bhupalam'
+      name: "Naga Pradeep Bhupalam",
     };
     setUserName(data.name);
   }, []);
 
   return (
-    <UserDataContextProvider value={{ loggedInUser: userName, setUserName }}>
-      <div className="text-[16px]">
-        <Header />
-        <section className="my-0 mx-auto max-w-[90%] pt-[140px]">
-          <Outlet />
-        </section>
-      </div>
-    </UserDataContextProvider>
+    <Provider store={appStore}>
+      <UserDataContextProvider value={{ loggedInUser: userName, setUserName }}>
+        <div className="text-[16px]">
+          <Header />
+          <section className="my-0 mx-auto max-w-[90%] pt-[140px]">
+            <Outlet />
+          </section>
+        </div>
+      </UserDataContextProvider>
+    </Provider>
   );
 };
 
