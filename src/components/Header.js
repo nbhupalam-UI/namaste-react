@@ -18,7 +18,7 @@ const Header = () => {
         <li className='pr-3'><Link to="/" className="hover:underline">Home</Link></li>
         <li className='px-3'><Link to="/about" className="hover:underline">About Us</Link></li>
         <li className='px-3'><Link to="/contact" className="hover:underline">Contact Us</Link></li>
-        <li className='pl-3 hover:underline font-bold'>Cart ({cartItems.length})</li>
+        <li className='pl-3 hover:underline font-bold'><Link to="/cart" className="hover:underline">Cart ({cartItems.length})</Link></li>
         <li className='pl-3 hover:underline font-semibold'>{loggedInUser}</li>
       </ul>
     </div>

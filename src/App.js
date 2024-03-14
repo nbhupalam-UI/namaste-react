@@ -13,6 +13,7 @@ import appStore from "./utils/appStore";
 import { Provider } from "react-redux";
 
 import "../index.css";
+import Cart from "./components/Cart";
 
 const About = lazy(() => import("./components/About"));
 const ContactUs = lazy(() => import("./components/ContactUs"));
@@ -70,6 +71,10 @@ const appRouter = createBrowserRouter([
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
       },
+      {
+        path: '/cart',
+        element: <Cart />
+      }
     ],
     errorElement: <Error />,
   },
